@@ -51,7 +51,7 @@ def create_user():
         address = data['address'],
         phone = data['phone']
     )
-    db.seesion.add(new_user)
+    db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User created'}), 200
 
