@@ -1,5 +1,5 @@
 from random import randrange
-from  sqlite3 import Connection as SQLite3Connection
+from sqlite3 import Connection as SQLite3Connection
 from datetime import datetime
 from faker import Faker
 from sqlalchemy import event

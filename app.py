@@ -69,11 +69,22 @@ def get_all_users_descending():
             "address": user.address,
             "phone": user.phone,
         })
-    return jsonify(all_users_ll.to_array()), 200
+    return jsonify(all_users_ll.to_list()), 200
 
 @app.route('/user/ascending_id', methods=['GET'])
 def get_all_users_ascending():
-    pass
+    users = User.query.all()
+    all_users_ll = linked_list.LinkedList()
+
+    for user in users:
+        all_users_ll.insert_at_end({
+            "id": user.id,
+            "name": user.name,
+            "email": user.email,
+            "address": user.address,
+            "phone": user.phone,
+        })
+    return jsonify(all_users_ll.to_list()), 200
 
 @app.route('/user/<user_id>', methods=['GET'])
 def get_one_user(user_id):
