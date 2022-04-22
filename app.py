@@ -116,10 +116,10 @@ def delete_user(user_id):
 @app.route('/blog_post/<user_id>', methods=['POST'])
 def create_blog_post(user_id):
     data = request.get_json()
-    
+
     user = User.query.filter_by(id=user_id).first()
     if not user:
-        return jsonify({"message": "user does not exits!"}), 400
+        return jsonify({"message": "user does not exist!"}), 400
 
     ht = hash_table.HashTable(10)
 
@@ -137,6 +137,7 @@ def create_blog_post(user_id):
     db.session.add(new_blog_post)
     db.session.commit()
     return jsonify({"message": "new blog post created"}), 200
+
 
 @app.route('/blog_post/<user_id>', methods=['GET'])
 def get_all_blog_posts(user_id):
