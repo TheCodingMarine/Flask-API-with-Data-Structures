@@ -1,4 +1,5 @@
 class Node:
+    """params (data, next_node), default params set to None"""
     def __init__(self, data=None, next_node=None):
         self.data = data
         self.next_node = next_node
@@ -9,10 +10,11 @@ class LinkedList:
         self.last_node = None
 
     def to_list(self):
+        """Method to return nodes as a list."""
         l = []
         if self.head is None:
             return l
-        
+
         node = self.head
         while node:
             l.append(node.data)
@@ -21,6 +23,7 @@ class LinkedList:
         return l
 
     def print_linked_list(self):
+        """Method  to print the nodes of the Linked Lists."""
         ll_string = ""
         node = self.head
         if node is None:
@@ -28,11 +31,13 @@ class LinkedList:
         while node:
             ll_string += f"{str(node.data)} -> "
             node = node.next_node
-        
+      
         ll_string += "None"
         print(ll_string)
 
     def insert_beginning(self, data):
+        """Method for inserting new node at the beginning of the Linked List. 
+            params (data)."""
         if self.head is None:
             self.head = Node(data, None)
             self.last_node = self.head
@@ -40,6 +45,8 @@ class LinkedList:
         self.head = new_node
 
     def insert_at_end(self, data):
+        """Method to insert new node at the end of the linked list.
+            params (data)."""
         if self.head is None:
             self.insert_beginning(data)
             return
@@ -48,6 +55,8 @@ class LinkedList:
         self.last_node = self.last_node.next_node
 
     def get_user_by_id(self, user_id):
+        """Method to retrieve user by their id from the Linked List.
+            params (user_id)"""
         node = self.head
         while node:
             if node.data["id"] is int(user_id):

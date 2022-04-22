@@ -32,7 +32,7 @@ class User(db.Model):
     email = db.Column(db.String(50))
     address = db.Column(db.String(200))
     phone = db.Column(db.String(50))
-    posts = db.relationship('BlogPost')
+    posts = db.relationship('BlogPost', cascade="all, delete")
     
 class BlogPost(db.Model):
     __tablename__ = 'blog_post'
@@ -106,7 +106,10 @@ def get_one_user(user_id):
 
 @app.route('/user/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
-    pass
+    user = User.query.filter_by(id=user_id).first()
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({}) , 200
 
 @app.route('/blog_post/<user_id>', methods=['POST'])
 def create_blog_post(user_id):
