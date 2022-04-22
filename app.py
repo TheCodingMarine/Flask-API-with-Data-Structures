@@ -1,13 +1,12 @@
-from distutils.sysconfig import get_config_var
 import os
 from sqlite3 import Connection as SQLite3Connection
 from datetime import datetime
-from webbrowser import get
 from sqlalchemy import event
 from sqlalchemy.engine import Engine
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from data_structures import linked_list, hash_table
+from data_structures import linked_list, hash_table, binary_search_tree
+import random
 
 app = Flask(__name__)
 
@@ -139,9 +138,17 @@ def create_blog_post(user_id):
     return jsonify({"message": "new blog post created"}), 200
 
 
-@app.route('/blog_post/<user_id>', methods=['GET'])
-def get_all_blog_posts(user_id):
-    pass
+@app.route('/blog_post/<blog_post_id>', methods=['GET'])
+def get_all_blog_posts(blog_post_id):
+    blog_post = BlogPost.query.all()
+    random.shuffle(blog_post_id)
+
+    bst = binary_search_tree.BinarySearchTree()
+
+    for post in blog_post:
+        bst.insert({
+            
+        })
 
 @app.route('/blog_post/<blog_post_id>', methods=['GET'])
 def get_one_blog_post(blog_post_id):
