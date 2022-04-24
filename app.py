@@ -147,8 +147,16 @@ def get_all_blog_posts(blog_post_id):
 
     for post in blog_post:
         bst.insert({
-            
+            "id": post.id,
+            "title": post.title,
+            "body": post.body,
+            "user": post.user,
         })
+
+        post = bst.search(blog_post_id)
+
+        if not post:
+            return jsonify({"message": "post not found"})
 
 @app.route('/blog_post/<blog_post_id>', methods=['GET'])
 def get_one_blog_post(blog_post_id):
