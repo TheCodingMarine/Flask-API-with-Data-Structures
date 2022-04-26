@@ -1,7 +1,8 @@
 class Node:
-    def __inti__(self, data, next_node):
+    def __init__(self, data, next_node):
         self.data = data
         self.next_node = next_node
+
 
 class Queue:
     def __init__(self):
